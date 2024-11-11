@@ -7,10 +7,7 @@ const methodOverride = require("method-override");
 const app = express();
 
 mongoose
-  .connect("mongodb://localhost:27017/farmstand", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect("mongodb://localhost:27017/farmstand", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("MongoDB接続中...");
   })

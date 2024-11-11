@@ -6,7 +6,7 @@ const productSchema = new Schema({
   price: Number,
   category: {
     type: String,
-    enum: ["乳製品", "肉", "野菜", "果物"],
+    enum: ["乳製品", "肉", "野菜", "果物", "その他"],
   },
   farm: {
     type: Schema.Types.ObjectId,
