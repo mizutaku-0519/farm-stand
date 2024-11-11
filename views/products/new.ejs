@@ -6,31 +6,28 @@
     <title>商品の新規作成</title>
   </head>
   <body>
-    <h1>商品の新規作成</h1>
-    <form action="/products/<%= product._id %>?_method=PUT" method="POST">
+    <h1><%= farm.title %>の商品登録</h1>
+    <h2>商品登録フォーム</h2>
+    <form action="/farm/<%= farm._id %>/products" method="POST">
       <div>
         <label for="name">商品名　：</label>
-        <input type="text" name="name" id="name" value="<%= product.name %>" />
+        <input type="text" name="name" id="name" />
       </div>
       <div>
         <label for="price">価格　　：</label>
-        <input
-          type="number"
-          name="price"
-          id="price"
-          value="<%= product.price %>"
-        />
+        <input type="number" name="price" id="price" />
       </div>
       <div>
         <label for="category">カテゴリ：</label>
         <select name="category" id="category">
           <% for(let category of categories) { %>
-          <option value="<%= category %>" <%= product.category === category ? "selected" : "" %>> <%= category %></option>
+          <option value="<%= category %>"><%= category %></option>
           <% } %>
         </select>
       </div>
-      <button>更新する</button>
+      <br />
+      <button>登録する</button>
     </form>
-    <a href="/products/<%= product._id %>">キャンセル</a>
+    <a href="/farm/<%= farm._id %>"><%= farm.title %>に戻る</a>
   </body>
 </html>

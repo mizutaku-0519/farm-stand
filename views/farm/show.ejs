@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= farm.title %></title>
+  </head>
+  <body>
+    <h1><%= farm.title %></h1>
+    <p><%= farm.location %></p>
+    <div><a href="/farm/<%= farm._id %>/edit">編集する</a></div>
+    <h2>商品一覧</h2>
+    <ul>
+      <% for(let product of farm.products) {%>
+      <a href="/products/<%= product._id %>"><li><%= product.name%></li></a>
+      <% } %>
+    </ul>
+    <a href="/farm/<%= farm._id %>/products/new">商品を登録する</a>
+    <br />
+    <br />
+    <div><a href="/farm">一覧に戻る</a></div>
+  </body>
+</html>
