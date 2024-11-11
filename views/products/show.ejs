@@ -7,13 +7,9 @@
   </head>
   <body>
     <h1><%= product.name %></h1>
-    <p>
-      カテゴリ：<a href="/products?category=<%= product.category %>"
-        ><%= product.category %></a
-      >
-    </p>
+    <p>カテゴリ：<a href="/products?category=<%= product.category %>"><%= product.category %></a></p>
     <p><%= product.price %>円/1個</p>
-    <p>農場：<%= product.farm.title %></p>
+    <p>農場：<a href="/farm/<%= product.farm._id %>"><%= product.farm.title %></a></p>
 
     <div>
       <a href="/farm/<%= product.farm._id %>">一覧に戻る</a>
