@@ -13,8 +13,10 @@
       >
     </p>
     <p><%= product.price %>円/1個</p>
+    <p>農場：<%= product.farm.title %></p>
+
     <div>
-      <a href="/products">一覧に戻る</a>
+      <a href="/farm/<%= product.farm._id %>">一覧に戻る</a>
     </div>
     <div>
       <a href="/products/<%= product._id %>/edit">編集する</a>
