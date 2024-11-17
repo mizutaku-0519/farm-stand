@@ -6,6 +6,7 @@
     <title>農場一覧</title>
   </head>
   <body>
+    <p><%= success %></p>
     <h1>農場一覧</h1>
     <% for(let farm of farms) { %>
     <li><a href="/farm/<%= farm._id %>"><%= farm.title %></a></li>

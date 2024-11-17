@@ -4,7 +4,15 @@ const mongoose = require("mongoose");
 const Product = require("./models/product");
 const Farm = require("./models/farm");
 const methodOverride = require("method-override");
+const session = require("express-session");
+const flash = require("connect-flash");
 const app = express();
+
+const sessionSetting = {
+  secret: "MySecret",
+  resave: false,
+  saveUninitialized: false,
+};
 
 mongoose
   .connect("mongodb://localhost:27017/farmstand", { useNewUrlParser: true, useUnifiedTopology: true })
@@ -19,6 +27,14 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(session(sessionSetting));
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.deleteProduct = req.flash("deleteProduct");
+  next();
+});
 
 const categories = ["肉", "野菜", "乳製品", "果物", "その他"];
 
@@ -86,6 +102,7 @@ app.post("/farm/:id/products", async (req, res) => {
 app.post("/farm", async (req, res) => {
   const farm = new Farm(req.body);
   await farm.save();
+  req.flash("success", "農場が作成できました");
   res.redirect("/farm");
 });
 
@@ -104,6 +121,7 @@ app.put("/farm/:id", async (req, res) => {
 app.delete("/products/:id", async (req, res) => {
   const { id } = req.params;
   await Product.findByIdAndDelete(id);
+  req.flash("deleteProduct", "商品を削除しました");
   res.redirect(`/products`);
 });
 
